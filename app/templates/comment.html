@@ -1,38 +1,37 @@
-{% extends 'base.html'%}
-{% import 'bootstrap/wtf.html' as wtf %}
-
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf%}
+{% import 'macros.html' as macro %}
 {% block content %}
-    <div class="container" id="allcomments" >
+<div>
+    <div class="container">
         <div class="row">
+        <div class="col-sm"> 
+            <h3 class="pt-3">Here is your pitch</h3>
+            <hr>
+            <p>Title : {{pitch.pitch_title}}</p>
+            <p>Description : {{pitch.pitch_comment}}</p>
+            <p>Date Posted : {{pitch.posted}}</p>
 
-            {% if all_comments %}
-                <div class="col-md-7" >
-                    <h3 class="text-center" id="coms">All comments for the post</h3>
-                    {% for comment in all_comments %}
-                       <div class="card w-90 mb-3" >
-                           <div class="card-body">
-                            <h5>{{comment.pitch.title}}</h5>
-                             <p class="card-title">{{ comment.comment }}</p>
-                             <p class="card-text">--- {{comment.user.username}}</p>
-                           </div>
-                       </div>
-                    {% endfor %}
-                   </div>
-                   <div class="col-md-5  commentform" >
-
-                        {{wtf.quick_form(form)}}
-                   </div>
-               </div>
-            {%else%}
-            <div class="card w-90 mb-3">
-                <div class="card-body">
-                  <p class="card-title">No Comments for this yet for this post. Be the first to comment</p>
-                </div>
-            </div> 
-            <div class="col-md-5">
-                    {{wtf.quick_form(form)}}
-                </div>
+            <a href="/comment/{{pitch.id}}?like=1">
+                <i class="far fa-thumbs-up"></i>
+            </a>{{pitch.likes}} <a href="/comment/{{pitch.id}}?dislike=1">
+                <i class="far fa-thumbs-down"></i>
+            </a>{{pitch.dislikes}}
+        </div>
+        <div class="col-sm">
+            <h3 class="pt-3">Comments</h3>
+            <hr>
+        
+            {% if current_user.is_authenticated %}
+            {{ wtf.quick_form(commentForm) }}
             {%endif%}
-    </div>
-   
-{% endblock%}
+            <h3>Show comments</h3>
+            {{macro.displayComments(comments)}}
+        
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+        </div>
+
+</div>
+{% endblock %}

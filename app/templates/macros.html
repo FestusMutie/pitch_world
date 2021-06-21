@@ -1,40 +1,28 @@
-{% macro display(piches) %}
-<div class="container-fluid">
-    <div class="row">
-        {% if piches %}
-        {% for category in piches %}
-        <div class="col-md-4">
-            <div class="thumbnail" id="carded">
-                <h5 class="card-header">{{category.title}}</h5>
-                <div class="card-body">
-                    <p>{{category.post}}</p>
-                    <p class="text-center"> Category: {{category.category}}</p>
-                    <footer class="blockquote-footer text-center"> Posted by: {{category.user.username}}</footer>
-                    <div><span class="foot">{{category.comment.count()}} Comments</span>
-                        <span class="foot"> <a href="{{url_for('main.like',id = category.id)}}"><i
-                                    class="fa fa-thumbs-up" style="font-size:18px;color: green"></i></a>
-                            {{category.upvote.count()}}</span>
+{% macro displayPitches(pitches_list)%}
+{%for pitch in pitches_list%}   
+    
+        <div class="col-sm m-5">
+            <div class=" card col-sm mt-2">
+              <div class="well well-lg p-3" style="text-align: center;">
+                  <h3>{{pitch.pitch_title}}</h3>
+                  <hr>
+                  <p>{{pitch.pitch_comment|truncate(50)}}</p>
+                  <p>By : {{pitch.user.username}} </p>
+                  <p>Posted on: {{pitch.posted}}</p>
+                      <a href="/comment/{{pitch.id}}" class="btn btn-info btn-center -center">
+                      Comment</a>
+              </div>
+          </div>
+          </div>
+    
+{%endfor%}
+{%endmacro%}
 
-
-                        <span class="foot"> <a href="{{url_for('main.dislike',id = category.id)}}"> <i
-                                    class="fa fa-thumbs-down" style="color:red;"></i>
-                                {{category.downvote.count()}}</a></span></div>
-
-                    <a href="{{url_for('main.comment',pitch_id = category.id)}}" class="btn btn-info btn-sm">
-                        Comment</a>
-                </div>
-            </div>
+{%macro displayComments(comments_list)%}
+    {%for comment in comments_list%}
+        <div class="col-md-12">
+            <p>{{comment.comment}}</p>
+            <h5>By : {{comment.user.username}}</h5>
         </div>
-
-        {% endfor %}
-        {% else %}
-        <div class="card w-90 mb-3">
-            <div class="card-body">
-
-                <p class="card-title">Category Has 0 posts</p>
-            </div>
-        </div>
-        {% endif %}
-    </div>
-</div>
-{% endmacro %}
+    {%endfor%}
+{%endmacro%}
