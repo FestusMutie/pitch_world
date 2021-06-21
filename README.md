@@ -11,7 +11,7 @@ This is an application that enables the user to pitch and see  different categor
 Clone the repository to your local directory in your computer
 Install python3 in your computer
 Run python3 in the terminal and get started
-## Technologies Used
+## Technologies Used:
 Python
 
 ## Support and Contact details
