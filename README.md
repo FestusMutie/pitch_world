@@ -7,7 +7,7 @@ Festus Mutie
 ## Description
 This is an application that enables the user to pitch and see  different categories of users posted by other users.
 
-## Setup/Installation
+## Setup/Installation:
 Clone the repository to your local directory in your computer
 Install python3 in your computer
 Run python3 in the terminal and get started
