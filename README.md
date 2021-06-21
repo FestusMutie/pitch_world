@@ -14,7 +14,7 @@ Run python3 in the terminal and get started
 ## Technologies Used:
 Python
 
-## Support and Contact details
+## Support and Contact details:
 Email:mutiefestus84@gmail.com
 
 ## License
