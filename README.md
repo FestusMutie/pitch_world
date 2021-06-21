@@ -4,7 +4,7 @@ This project was generated with Python 3.8
 Author:
 Festus Mutie
 
-## Description:
+## Description
 This is an application that enables the user to pitch and see  different categories of users posted by other users.
 
 ## Setup/Installation
